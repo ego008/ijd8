@@ -1,0 +1,80 @@
+<?py include('header.html', body_ext="") ?>
+
+<div id="main">
+    <div id="content">
+      <div>
+
+    <article class="hentry " role="article">
+
+  <header>
+    <h1 class="entry-title">
+    #{obj['title']}
+    </h1>
+      <p class="meta">
+<time datetime="#{detail_date_tzd(obj['add_time'])}" pubdate data-updated="true">#{detail_date(obj['add_time'])}</time>
+         &bull; <a rel="bookmark" href="/topic/#{obj['id']}/#{qt}">&infin;</a>
+      </p>
+  </header>
+
+<div class="entry-content">#{obj['html']}</div>
+
+  <footer>
+
+<?py include('ggad_336x280.html') ?>
+
+<p class="meta">本文简短网址: <code>http://#{{MAJOR_DOMAIN}}/t/#{obj['id']}</code> 转摘注明来源</p>
+
+    <p class="meta">
+
+<span class="byline author vcard"></span>
+<span class="categories">
+Category:
+    <a class="category" href="/category/#{obj['cid']}/#{quoted_string(obj['cname'])}">#{obj["cname"]}</a>
+</span>
+
+<?py if obj["tags"]: ?>
+<span class="categories">
+Tags:
+#{', '.join(['<a class="tag" href="/tag/%s">%s</a>' % (quoted_string(tag), tag) for tag in obj["tags"].split(",")])}
+</span>
+<?py #endif ?>
+
+    </p>
+
+
+<?py if related_posts: ?>
+<h4>Related articles</h4>
+<ul>
+<?py     for each in related_posts: ?>
+<li><a href="/topic/#{each['id']}/#{quoted_string(each['title'])}">#{each['title']}</a></li>
+<?py     #endfor ?>
+</ul>
+<?py #endif ?>
+
+  </footer>
+
+    </article>
+
+
+  <div class="pagination">
+    <?py if old_obj: ?>
+    <a class="prev" href="/topic/#{old_obj['id']}/#{quoted_string(old_obj['title'])}">&laquo; #{old_obj["title"]}</a>
+    <?py #endif ?>
+    <?py if new_obj: ?>
+    <a class="next" href="/topic/#{new_obj['id']}/#{quoted_string(new_obj['title'])}">#{new_obj["title"]} &raquo;</a>
+    <?py #endif ?>
+  </div>
+
+<?py include('share.html') ?>
+
+<?py include('comment.html') ?>
+
+
+</div>
+
+<?py include('sidebar.html') ?>
+
+    </div>
+</div>
+
+<?py include('footer.html') ?>

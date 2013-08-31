@@ -1,0 +1,158 @@
+<!-- rich editer -->
+<script type="text/javascript" src="#{JQUERY}"></script>
+<link rel="stylesheet" type="text/css" href="/static/markitup/skins/simple/style.css" />
+<link rel="stylesheet" type="text/css" href="/static/markitup/sets/markdown/style.css" />
+
+<script type="text/javascript" src="/static/markitup/jquery.markitup.js"></script>
+<script type="text/javascript" src="/static/markitup/sets/markdown/set.js"></script>
+<script type="text/javascript">
+<!--
+$(document).ready(function()    {
+    myMarkdownSettings.previewParserPath =  '/admin/markitup/preview?_xsrf=#{xsrf_token}';
+    $('#markdown').markItUp(myMarkdownSettings);
+});
+-->
+</script>
+
+<!-- rich editer end -->
+<!-- facebox -->
+<link href="/static/facefiles/facebox.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="/static/facefiles/facebox.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('a[rel*=facebox]').facebox()
+      //$('a[rel*=facebox]').click();
+    })
+</script>
+
+<!-- /facebox -->
+
+<span id="h"></span>
+<h2>#{title} / #{label}</h2>
+<p id="text" style="color:red;"></p>
+
+<p>*
+选择分类 &raquo; <select id="cid" name="cid">
+<?py for cat in cats: ?>
+<?py     if obj['cid'] == cat['id']: ?>
+<?py         slct = 'selected="selected"' ?>
+<?py     else: ?>
+<?py         slct = '' ?>
+<?py     #endif ?>
+<option value="#{cat['id']}" #{slct}>#{cat['name']}</option>
+<?py #endfor ?>
+</select>
+
+</p>
+<p>*标题: <input type="text" id="title" style="width:430px;" value="${obj['title']}" tabindex="2" /> 100s</p>
+<p>
+<textarea id="markdown" name="markdown" style="width:500px;height:300px;" tabindex="3">#{obj['markdown']}</textarea>
+</p>
+<p>
+上传图片或附件 <input id="fileupload" type="file" size="45" name="fileupload" class="input">
+</p>
+<p>标签: <input type="text" id="tags" style="width:360px;" value="${obj['tags']}" tabindex="4" /> 100s 用逗号分隔','<br/>
+<?py if tags: ?>
+<a href="#tagdiv" rel="facebox[.thickstyle]">从热门标签中选择</a>
+<?py #endif ?>
+</p>
+
+<?py if 'id' in obj: ?>
+<input type="hidden" id="objid" name="id" value="#{obj['id']}"/>
+<?py else: ?>
+<input type="hidden" id="objid" name="id" value="0"/>
+<?py #endif ?>
+
+<p><button id="submit" class="bigbtn"> 提交文章 </button></p>
+
+<script>
+$('#submit').click(function(){
+
+    var cid = $('#cid').val();
+    var id = $('#objid').val();
+    var title = $('#title').val().replace(/(^\s*)|(\s*$)/g,"");
+    var markdown = $('#markdown').val().replace(/(^\s*)|(\s*$)/g,"");
+    var tags = $('#tags').val().replace(/(^\s*)|(\s*$)/g,"");
+
+    var t = $('#text');
+
+    if(title.length< 1 || title.length > 100){
+        $('#title').focus();
+        t.html("标题 必填 且最多可填100个字符");
+        return;
+    }
+
+    if(markdown.length< 1){
+        document.getElementsByTagName('textarea')[0].focus();
+        t.html("内容 必填");
+        return;
+    }
+
+    if(tags.length > 50){
+        $('#tags').focus();
+        t.html("标签最多可填50个字符");
+        return;
+    }
+
+    $('#submit').attr('disabled', 'disabled');
+    t.html("Sending now.....");
+
+
+    $.ajax({
+        type: 'POST',
+        url: '#{request.path}?_xsrf=#{xsrf_token}',
+        dataType: "json",
+        data: {'id': id, 'cid': cid, 'title': title, 'markdown': markdown, 'tags': tags, '_xsrf': '#{xsrf_token}'},
+        success: function(data){
+            t.html(data.status + ": "+ data.msg);
+            $('#submit').removeAttr("disabled");
+            scroll(0,$("#h").position().top);
+        }
+    });
+});
+
+
+function settag(tag){
+    var tagField = document.getElementById('tags');
+    tagField.value += tag + ",";
+}
+
+</script>
+
+
+<div id="tagdiv" style="display:none;line-height:1.7em;color:#999">
+<h4>请选择以下已有标签</h4>
+<?py for tag in tags: ?>
+<a href="#" onclick="settag('#{tag.name}');return false;">#{tag.name}</a>,
+<?py #endfor ?>
+</div>
+
+<!-- ajaxfileupload -->
+<script type="text/javascript" src="/static/js/jquery.upload-1.0.2.min.js"></script>
+<script type="text/javascript">
+$('#fileupload').change(function() {
+    if($(this).val()){
+        $(this).upload('/admin/fileupload?_xsrf=#{xsrf_token}', function(res) {
+            if(res.status == 200){
+                var el = document.getElementById('markdown');
+
+                var filetype = res.msg.split(".");
+                var tp ="jpg,gif,bmp,png";
+                var rs=tp.indexOf(filetype[filetype.length-1]);
+                if(rs>=0){
+                    //el.value += '\n图片：' + res.filename + '\n<img src="' + res.msg + '" alt="' + res.filename + '" /> \n';
+                    el.value += '\n图片：' + res.filename + '\n\n![' + res.filename + '](' + res.msg + ' "' + res.filename + '") \n\n';
+                }else{
+                    el.value += '\n附件：' + res.filename + ' <a href="' + res.msg + '" target="_blank">点击下载</a> \n\n';
+                }
+
+                el.focus();
+            }else{
+                $(this).val("");
+                alert(res.msg);
+            }
+        }, 'json');
+    }
+});
+</script>
+<!-- /ajaxfileupload -->

@@ -1,0 +1,17 @@
+<h2>#{title}</h2>
+
+<p>管理的功能不多，只对分类、文章添加、编辑，没有删除功能，望留意</p>
+<br/>
+<h2>可直接选择在下面分类下发文章</h2>
+<ul>
+<?py for cat in cats: ?>
+<li><a href="/admin/post?fcid=#{cat['id']}">#{"%d %s (%d)"%( cat['id'], cat['name'], cat['num'] )}</a></li>
+<?py #endfor ?>
+</ul>
+
+<br/>
+<h3>下面是页面 headers 信息，可忽略不管</h3>
+<br/>
+<?py for k, v in request.headers.iteritems(): ?>
+#{k}: #{v}<br/>
+<?py #endfor ?>

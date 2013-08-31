@@ -1,0 +1,15 @@
+<h2>#{title}</h2>
+
+<form action="#{request.path}" method="post">
+#{xsrf_form_html()}
+<p>
+<label for="name">user name</label>
+<input type="text" value="" name="name" size="25" style="padding:5px;"/>
+</p>
+
+<p>
+<label for="password">passwords</label>
+<input type="password" name="pw" value="" size="25" style="padding:5px;" />
+</p>
+<p><input type="submit" value="#{label}" name="submit" class="btn" style="padding:5px;margin-left:90px;" /></p>
+</form>

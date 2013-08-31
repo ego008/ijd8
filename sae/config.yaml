@@ -1,0 +1,12 @@
+---
+name: youappid
+version: 1
+
+handlers:
+- url: /static/
+  static_path: static
+  gzip: on
+
+- expire: if(path ~ "(.*)\.(js|css|jpg|png|gif|ico)") time 31536000
+- compress: if(out_header["Content-Length"] >= 1240) compress
+...

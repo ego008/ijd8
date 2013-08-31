@@ -1,0 +1,46 @@
+<?py include('header.html', body_ext='') ?>
+
+<div id="main">
+    <div id="content">
+      <div class="blog-index">
+
+<?py for obj in objs: ?>
+    <article >
+
+  <header>
+    <h1 class="entry-title"><a href="/topic/#{obj['id']}/#{quoted_string(obj['title'])}">#{obj['title']}</a></h1>
+      <p class="meta">
+<time datetime="#{detail_date_tzd(obj['add_time'])}" pubdate data-updated="true">#{detail_date(obj['add_time'])}</time>
+         &bull; <a rel="bookmark" href="/topic/#{obj['id']}/#{quoted_string(obj['title'])}">&infin;</a>
+      </p>
+  </header>
+
+<div class="entry-content">
+#{get_part(obj["html"])}
+</div>
+
+  <footer>
+<a rel="full-article" href="/topic/#{obj['id']}/#{quoted_string(obj['title'])}">Read On →</a>
+  </footer>
+
+    </article>
+
+<?py #endfor ?>
+
+  <div class="pagination">
+<?py if page < total_page: ?>
+    <a class="prev" href="/?page=#{page+1}">← Older</a>
+<?py #endif ?>
+<?py if page > 1: ?>
+    <a class="next" href="/?page=#{page-1}">Newer →</a>
+<?py #endif ?>
+  </div>
+
+</div>
+
+<?py include('sidebar.html') ?>
+
+    </div>
+</div>
+
+<?py include('footer.html') ?>

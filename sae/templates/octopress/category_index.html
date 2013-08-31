@@ -1,0 +1,50 @@
+<?py include('header.html', body_ext=' id="archive"') ?>
+
+<div id="main">
+    <div id="content">
+      <div>
+
+<article role="article">
+
+  <header>
+    <h1 class="entry-title">Category: #{cobj["name"]}</h1>
+  </header>
+
+  <div id="blog-archives" class="category">
+
+<?py year = 0 ?>
+<?py for obj in objs: ?>
+<?py     pmdy = get_post_mdy(obj['add_time']) ?>
+<?py     if pmdy[2] != year: ?>
+<?py         year = pmdy[2] ?>
+  <h2>#{year}</h2>
+<?py     #endif ?>
+
+<article >
+<h1 class="entry-title"><a href="/topic/#{obj['id']}/#{quoted_string(obj['title'])}">#{obj["title"]}</a></h1>
+<time datetime="#{detail_date_tzd(obj['add_time'])}" pubdate><span class='month'>#{pmdy[0]}</span> <span class='day'>#{pmdy[1]}</span> <span class='year'>#{pmdy[2]}</span></time>
+<footer><span class="categories">posted in category <a class="category" href="/category/#{cobj['id']}/#{qt}">#{cobj["name"]}</a></span></footer>
+</article>
+
+<?py #endfor ?>
+
+  <div class="pagination">
+<?py if page < total_page: ?>
+    <a class="prev" href="/category/#{cobj['id']}/#{qt}?page=#{page+1}">← Older</a>
+<?py #endif ?>
+<?py if page > 1: ?>
+    <a class="next" href="/category/#{cobj['id']}/#{qt}?page=#{page-1}">Newer →</a>
+<?py #endif ?>
+
+  </div>
+
+</article >
+
+</div>
+
+<?py include('sidebar.html') ?>
+
+    </div>
+</div>
+
+<?py include('footer.html') ?>

@@ -1,0 +1,37 @@
+<h2>#{title}</h2>
+<br/>
+<h3>分类 / #{label}</h3>
+<form name="addoredt" action="#{request.path}" method="post">
+#{xsrf_form_html()}
+<p>
+<label for="name">分类名：</label>
+<input type="text" value="${obj['name']}" name="name" size="25" style="padding:5px;"/>
+<?py if 'id' in obj: ?>
+<input type="hidden" name="id" value="#{obj['id']}"/>
+<input type="hidden" name="act" value="edit"/>
+<?py else: ?>
+<input type="hidden" name="act" value="add"/>
+<?py #endif ?>
+<input type="submit" value="提交 #{label}" name="submit" class="btn" style="padding:5px;" />
+</p>
+</form>
+
+<br/>
+<h3>修改分类</h3>
+<form name="find" action="#{request.path}" method="post">
+#{xsrf_form_html()}
+<input type="hidden" name="act" value="find"/>
+<p>
+<label for="name">输入分类id：</label>
+<input type="text" value="" name="fid" size="25" style="padding:5px;"/>
+<input type="submit" value="前往修改" name="submit" class="btn" style="padding:5px;" />
+</p>
+</form>
+
+<br/>
+<h2>已有分类列表(点击可在该分类下发文章)</h2>
+<ul>
+<?py for cat in cats: ?>
+<li><a href="/admin/post?fcid=#{cat['id']}">#{"%d %s (%d)"%( cat['id'], cat['name'], cat['num'] )}</a></li>
+<?py #endfor ?>
+</ul>

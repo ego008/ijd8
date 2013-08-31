@@ -1,0 +1,7 @@
+<h2>#{title}</h2>
+
+<form action="#{request.path}" method="post" enctype="multipart/form-data">
+#{xsrf_form_html()}
+<input name="fileupload" type="file" />
+<input type="submit" value="Submit" name="submit" />
+</form>

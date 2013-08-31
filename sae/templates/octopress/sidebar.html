@@ -1,0 +1,60 @@
+
+<aside class="sidebar">
+
+<section>
+  <h1>欢迎投稿</h1>
+<ul>
+<li>1.可使用 Markdown 语法来编写文章。</li>
+<li>2.编写文章时加上至少一条新闻来源的链接；原创性文章，可加入相关信息（如涉及的个人 Blog）的链接。</li>
+<li>3.文章提交后请耐心等待，我们会尽快审核并发布。请投 tougao(#)ijd8.com</li>
+</ul>
+</section>
+
+<?py if 'recent_posts' in _context: ?>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    <?py for each in recent_posts: ?>
+      <li>
+        <a href="/topic/#{each['id']}/#{quoted_string(each['title'])}">#{each["title"]}</a>
+      </li>
+    <?py #endfor ?>
+  </ul>
+</section>
+<?py #endif ?>
+
+<?py if 'cats' in _context: ?>
+<section>
+  <h1>Top Categories</h1>
+  <ul id="top-category-list">
+  <?py for cat in cats: ?>
+  <li><a href="/category/#{cat['id']}/#{quoted_string(cat['name'])}">#{cat["name"]} (#{cat["num"]})</a></li>
+  <?py #endfor ?>
+  </ul>
+</section>
+<?py #endif ?>
+
+<?py if 'tags' in _context: ?>
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud">
+    <?py for tag in tags: ?>
+    <a href="/tag/#{quoted_string(tag['name'])}">#{tag["name"]}</a>
+    <?py #endfor ?>
+    </span>
+</section>
+<?py #endif ?>
+
+
+<?py if LINK_BROLL: ?>
+<section>
+  <h1>Link broll</h1>
+    <ul id="link-list">
+    <?py for link in LINK_BROLL: ?>
+    <li><a href="#{link['url']}" title="${link['title']}" target="_blank">#{link["text"]}</a></li>
+    <?py #endfor ?>
+    </ul>
+</section>
+<?py #endif ?>
+
+</aside>
