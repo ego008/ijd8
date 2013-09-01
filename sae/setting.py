@@ -47,4 +47,4 @@ BUCKET = "" #Domain Name, 如 upload 。不用或用七牛请留空
 ## 2) 七牛 注册可获永久10G空间和每月10G流量，注册地址 http://t.cn/z8h5lsg
 QN_AK = "" #七牛 ACCESS_KEY
 QN_SK = "" #七牛 SECRET_KEY
-QN_BUCKET = "youbbs" #空间名称 , 如 upload
+QN_BUCKET = "" #空间名称 , 如 upload
