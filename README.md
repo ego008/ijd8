@@ -40,6 +40,8 @@ ijd8源于一个闲置的域名和一个简单的程序博客。
 6. 上传到SAE 即可
 7. 管理路径 /admin/
 
+**注意**： BAE 上当前的pygments 是v1.4 ， 而在导入formatters 时需要载入模块commands，而BAE 上没有这个模块，解决方法是把SAE 下的pygments 文件夹复制到BAE 目录下。具体参见 [http://www.ijd8.com/t/19](http://www.ijd8.com/t/19 "BAE pygments")
+
 官方示例使用了多说作评论系统，你也可以使用其它第三方评论系统，只需打开/templates/octopress/comment.html 把代码修改为你的就行。
 
 相关链接
