@@ -30,6 +30,7 @@ class Application(tornado.wsgi.WSGIApplication):
         ]
         settings = dict(
             static_path=os.path.join(os.path.dirname(__file__), "static"),
+            cookie_secret=COOKIE_SECRET,
             autoescape=None,
             debug = DEBUG
         )
@@ -168,6 +169,7 @@ class TopicPage(BaseHandler):
                 "keywords": obj["tags"],
                 "qt": qt,
                 "obj": obj,
+                "user_id": self.get_secure_cookie("user"),
                 "new_obj": new_obj,
                 "old_obj": old_obj,
                 "related_posts": related_posts,

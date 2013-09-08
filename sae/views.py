@@ -47,7 +47,7 @@ class Application(tornado.wsgi.WSGIApplication):
         settings = dict(
             static_path=os.path.join(os.path.dirname(__file__), "static"),
             xsrf_cookies=True,
-            cookie_secret="11orTzKXQAsaYdkL5gEtGeJJFuYh7EQnp2XdTP1o/Vo=",
+            cookie_secret=COOKIE_SECRET,
             login_url="/admin/login",
             autoescape=None,
             debug = True

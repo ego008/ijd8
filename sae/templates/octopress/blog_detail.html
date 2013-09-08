@@ -13,6 +13,9 @@
       <p class="meta">
 <time datetime="#{detail_date_tzd(obj['add_time'])}" pubdate data-updated="true">#{detail_date(obj['add_time'])}</time>
          &bull; <a rel="bookmark" href="/topic/#{obj['id']}/#{qt}">&infin;</a>
+        <?py if current_user: ?>
+        - [ <a href="/admin/post?id=#{obj['id']}">Edit</a> ]
+        <?py #endif ?>
       </p>
   </header>
 
@@ -22,7 +25,11 @@
 
 <?py include('ggad_336x280.html') ?>
 
-<p class="meta">本文简短网址: <code>http://#{{MAJOR_DOMAIN}}/t/#{obj['id']}</code> 转摘注明来源</p>
+<p class="meta">本文简短网址: <code>http://#{{MAJOR_DOMAIN}}/t/#{obj['id']}</code> 转摘注明来源
+<?py if current_user: ?>
+- [ <a href="/admin/post?id=#{obj['id']}">Edit</a> ]
+<?py #endif ?>
+</p>
 
     <p class="meta">
 

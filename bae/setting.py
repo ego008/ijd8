@@ -32,6 +32,8 @@ MYSQL_PASS = const.MYSQL_PASS
 MYSQL_HOST = "%s:%s" % (const.MYSQL_HOST, const.MYSQL_PORT)
 JQUERY = "http://libs.baidu.com/jquery/1.9.1/jquery.min.js"
 
+COOKIE_SECRET = "11oETzKXQAGaYdkd5gEmGehJFuYh7Ewnp2XdTP1o/Vo="
+
 LANGUAGE = 'zh-CN'
 
 EACH_PAGE_POST_NUM = 10 #每页显示文章数

@@ -29,6 +29,8 @@ MYSQL_HOST_M = "%s:%s" % (sae.const.MYSQL_HOST, sae.const.MYSQL_PORT)
 
 JQUERY = "http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"
 
+COOKIE_SECRET = "11orTzKXQAsaYdkL5gEtGeJJFuYh7EQnp2XdTP1o/Vo="
+
 LANGUAGE = 'zh-CN'
 
 EACH_PAGE_POST_NUM = 10 #每页显示文章数
