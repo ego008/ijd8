@@ -275,7 +275,7 @@ class PostPage(BaseHandler):
                             else:
                                 num = 1
                                 content = str(id)
-                                self.db.execute("UPDATE oppy_tag SET num = %s, content = %s WHERE id = %s LIMIT 1", num, ",".join(id_list), tag_obj["id"])
+                                self.db.execute("UPDATE oppy_tag SET num = %s, content = %s WHERE id = %s LIMIT 1", num, content, tag_obj["id"])
                         else:
                             self.db.execute("INSERT INTO oppy_tag (name,num,content) VALUES (%s,%s,%s)",tag, 1, str(id))
 
@@ -301,7 +301,7 @@ class PostPage(BaseHandler):
                     else:
                         num = 1
                         content = str(new_post_id)
-                        self.db.execute("UPDATE oppy_tag SET num = %s, content = %s WHERE id = %s LIMIT 1", num, ",".join(id_list), tag_obj["id"])
+                        self.db.execute("UPDATE oppy_tag SET num = %s, content = %s WHERE id = %s LIMIT 1", num, content, tag_obj["id"])
                 else:
                     self.db.execute("INSERT INTO oppy_tag (name,num,content) VALUES (%s,%s,%s)",tag, 1, str(new_post_id))
 
