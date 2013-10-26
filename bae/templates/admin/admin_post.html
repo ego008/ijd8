@@ -46,7 +46,7 @@ $(document).ready(function()    {
 </p>
 <p>*标题: <input type="text" id="title" style="width:430px;" value="${obj['title']}" tabindex="2" /> 100s</p>
 <p>
-<textarea id="markdown" name="markdown" style="width:500px;height:300px;" tabindex="3">#{obj['markdown']}</textarea>
+<textarea id="markdown" name="markdown" style="width:610px;height:300px;" tabindex="3">#{obj['markdown']}</textarea>
 </p>
 <p>
 上传图片或附件 <input id="fileupload" type="file" size="45" name="fileupload" class="input">
@@ -147,6 +147,7 @@ $('#fileupload').change(function() {
                 }
 
                 el.focus();
+                document.getElementsByName("fileupload")[0].value="";
             }else{
                 $(this).val("");
                 alert(res.msg);

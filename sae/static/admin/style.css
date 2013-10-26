@@ -7,12 +7,12 @@ h2{font-size:1.5em;font-weight:400}
 p{line-height:1.5em;margin-top:20px;text-align:left}
 pre{background:#efefef;border:1px solid #dfdfdf;display:block;font-size:1.1em;line-height:1.3em;margin-top:20px;overflow:auto;padding:10px}
 textarea{font-family:Arial;font-size:1em}
-#wrap{background:#efefef;border:15px solid #4E4C4D;width:930px;padding-top:15px}
-#bannerwrap{text-align:center;width:830px}
-#contentwrap{width:830px}
+#wrap{background:#efefef;border:15px solid #4E4C4D;width:960px;padding-top:15px}
+#bannerwrap{text-align:center;width:930px}
+#contentwrap{width:930px}
 #contentwrap h1{background:#000;color:#fff;font-weight:400;margin-bottom:20px;padding:20px}
 #contentwrap h1 a{color:#fff}
-#content{float:right;width:550px}
+#content{float:right;width:655px}
 .content-margin-20{float:left;width:20px}
 #content h1 .description{color:#fff;font-size:.5em;font-weight:400}
 .post embed,.post img,.post object{display:block;margin-top:20px;max-width:496px}
@@ -49,7 +49,7 @@ textarea{font-family:Arial;font-size:1em}
 #sidebar1 table th{color:#000;text-align:center}
 #sidebar1 table td{color:#dfdfdf;text-align:center}
 #sidebar1 caption{color:#f70;font-size:1em;font-weight:700;margin-bottom:10px;text-align:left}
-#comments,#respond{background:#fff;width:550px}
+#comments,#respond{background:#fff;width:655px}
 ul#commentlist{list-style:none;margin-bottom:20px;padding:0 20px}
 ul#commentlist li.comment{border-top:1px dotted #dfdfdf;padding:20px 0}
 ul#commentlist ul.children{list-style:none;padding:0 0 0 20px}
@@ -77,7 +77,7 @@ li.depth-5 #respond{margin:0 0 -20px -100px}
 .commentlinks a:hover{background:#000;color:#fff}
 .commentlinks .current{background:#000;color:#fff;padding:5px 10px}
 #s{background:#efefef url(../img/mag.png) top left no-repeat;border:1px solid #000;color:#000;width:192px;padding:3px 3px 3px 25px}
-#footer{border-top:1px solid #000;clear:both;text-align:right;width:830px;padding:20px 0}
+#footer{border-top:1px solid #000;clear:both;text-align:right;width:930px;padding:20px 0}
 .navlink a{background:#fff;color:#f70;display:block;margin-bottom:20px;text-align:center;padding:10px}
 .navlink-posts{background:#fff;color:#f70;display:block;text-align:center;margin:20px 0;padding:10px}
 .wp-smiley{border:none;display:inline;margin:0}

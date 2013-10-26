@@ -3,12 +3,12 @@
 import re
 from pygments import highlight
 from pygments import lexers
-from pygments import formatters
+from pygments.formatters import HtmlFormatter
 
 ###### def
 def pygmentize(code_raw, language):
     lexer = lexers.get_lexer_by_name(language, encoding='utf-8', startinline=True)
-    return highlight(code_raw, lexer, formatters.HtmlFormatter(encoding="utf-8",startinline=True))
+    return highlight(code_raw, lexer, HtmlFormatter(encoding="utf-8",startinline=True))
 
 def tableize_code (text, lang = ""):
     string = text.strip()
